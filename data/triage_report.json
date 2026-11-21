@@ -1,0 +1,94 @@
+[
+  {
+    "source_ip": "185.220.101.42",
+    "telemetry_summary": {
+      "total_requests": 320,
+      "requests_per_minute": 150.47,
+      "total_mb_transferred": 0.09,
+      "user_agents": [
+        "python-requests/2.31.0"
+      ]
+    },
+    "ai_triage": {
+      "attack_classification": "Credential Brute-Force",
+      "severity": "HIGH",
+      "mitre_attack_technique": "T1110 - Brute Force",
+      "confidence_score": 95,
+      "technical_summary": "The source IP 185.220.101.42 is performing a high-frequency credential stuffing attack against the /api/login endpoint. The telemetry shows a 100% failure rate (320/320) with 401 Unauthorized responses, utilizing a Python-based automated script.",
+      "recommended_remediation": [
+        "Implement an immediate temporary block on the source IP 185.220.101.42 at the WAF or perimeter firewall level.",
+        "Enable rate-limiting or CAPTCHA challenges on the /api/login endpoint to mitigate automated brute-force attempts.",
+        "Review authentication logs for successful logins from this IP prior to the block and initiate account lockout procedures if suspicious activity is confirmed."
+      ]
+    }
+  },
+  {
+    "source_ip": "91.240.118.17",
+    "telemetry_summary": {
+      "total_requests": 250,
+      "requests_per_minute": 100.4,
+      "total_mb_transferred": 0.08,
+      "user_agents": [
+        "Gobuster/3.6"
+      ]
+    },
+    "ai_triage": {
+      "attack_classification": "Directory Enumeration and Sensitive File Discovery",
+      "severity": "HIGH",
+      "mitre_attack_technique": "T1595.002 - Vulnerability Scanning",
+      "confidence_score": 95,
+      "technical_summary": "The source IP is performing automated directory and file enumeration using the Gobuster tool. The 100% 404 error rate across 250 requests targeting sensitive paths like /.env, /backup.zip, and /etc/passwd indicates an active reconnaissance phase aimed at identifying misconfigurations or exposed administrative interfaces.",
+      "recommended_remediation": [
+        "Implement an immediate temporary block on IP 91.240.118.17 at the perimeter firewall or WAF.",
+        "Review web server logs to ensure no successful 200 OK responses were returned for the targeted sensitive endpoints.",
+        "Configure rate-limiting and automated IP shunning for User-Agents associated with known vulnerability scanners."
+      ]
+    }
+  },
+  {
+    "source_ip": "45.133.1.99",
+    "telemetry_summary": {
+      "total_requests": 180,
+      "requests_per_minute": 30.17,
+      "total_mb_transferred": 0.09,
+      "user_agents": [
+        "sqlmap/1.8.4#stable"
+      ]
+    },
+    "ai_triage": {
+      "attack_classification": "SQL Injection",
+      "severity": "CRITICAL",
+      "mitre_attack_technique": "T1190 - Exploit Public-Facing Application",
+      "confidence_score": 100,
+      "technical_summary": "The source IP is actively performing automated SQL injection attacks using the sqlmap tool. The payloads target database structure and authentication bypass, evidenced by the presence of DROP TABLE, UNION SELECT, and time-based blind SQLi patterns in the request parameters.",
+      "recommended_remediation": [
+        "Implement a permanent block on IP 45.133.1.99 at the WAF and perimeter firewall level.",
+        "Review application logs for successful database query execution to determine if data exfiltration or schema modification occurred.",
+        "Validate that all input parameters are using parameterized queries or prepared statements to mitigate SQL injection vulnerabilities."
+      ]
+    }
+  },
+  {
+    "source_ip": "103.85.24.11",
+    "telemetry_summary": {
+      "total_requests": 50,
+      "requests_per_minute": 20.41,
+      "total_mb_transferred": 299.29,
+      "user_agents": [
+        "curl/8.4.0"
+      ]
+    },
+    "ai_triage": {
+      "attack_classification": "Data Exfiltration",
+      "severity": "HIGH",
+      "mitre_attack_technique": "T1537 - Transfer Data to Cloud Account",
+      "confidence_score": 85,
+      "technical_summary": "The source IP is performing a systematic enumeration of the /api/export/users endpoint, requesting 50 unique pages in rapid succession. The high volume of data transferred (299.29 MB) combined with the use of a non-browser user agent (curl) strongly indicates an automated script attempting to scrape or exfiltrate the entire user database.",
+      "recommended_remediation": [
+        "Implement an immediate temporary block on IP 103.85.24.11 at the WAF or perimeter firewall.",
+        "Review application logs to determine if the exported data contains sensitive PII and initiate incident response procedures if data breach is confirmed.",
+        "Implement rate limiting or authentication requirements on the /api/export/users endpoint to prevent unauthorized bulk data extraction."
+      ]
+    }
+  }
+]

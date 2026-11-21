@@ -1,0 +1,77 @@
+[
+  {
+    "src_ip": "185.220.101.42",
+    "total_requests": 320,
+    "requests_per_minute": 150.47,
+    "auth_failures_401": 320,
+    "blocked_or_server_err": 0,
+    "not_found_404": 0,
+    "total_mb_transferred": 0.09,
+    "unique_endpoints": 1,
+    "user_agents": [
+      "python-requests/2.31.0"
+    ],
+    "sample_endpoints": [
+      "/api/login"
+    ]
+  },
+  {
+    "src_ip": "91.240.118.17",
+    "total_requests": 250,
+    "requests_per_minute": 100.4,
+    "auth_failures_401": 0,
+    "blocked_or_server_err": 0,
+    "not_found_404": 250,
+    "total_mb_transferred": 0.08,
+    "unique_endpoints": 6,
+    "user_agents": [
+      "Gobuster/3.6"
+    ],
+    "sample_endpoints": [
+      "/backup.zip",
+      "/etc/passwd",
+      "/wp-admin",
+      "/admin/login",
+      "/.env"
+    ]
+  },
+  {
+    "src_ip": "45.133.1.99",
+    "total_requests": 180,
+    "requests_per_minute": 30.17,
+    "auth_failures_401": 0,
+    "blocked_or_server_err": 180,
+    "not_found_404": 0,
+    "total_mb_transferred": 0.09,
+    "unique_endpoints": 4,
+    "user_agents": [
+      "sqlmap/1.8.4#stable"
+    ],
+    "sample_endpoints": [
+      "/api/search?q=';DROP%20TABLE%20orders;--",
+      "/api/products?id=1'%20OR%20'1'='1",
+      "/api/products?id=1'%20AND%20SLEEP(5)--",
+      "/api/products?id=1%20UNION%20SELECT%20username,password%20FROM%20users--"
+    ]
+  },
+  {
+    "src_ip": "103.85.24.11",
+    "total_requests": 50,
+    "requests_per_minute": 20.41,
+    "auth_failures_401": 0,
+    "blocked_or_server_err": 0,
+    "not_found_404": 0,
+    "total_mb_transferred": 299.29,
+    "unique_endpoints": 50,
+    "user_agents": [
+      "curl/8.4.0"
+    ],
+    "sample_endpoints": [
+      "/api/export/users?page=38",
+      "/api/export/users?page=3",
+      "/api/export/users?page=41",
+      "/api/export/users?page=24",
+      "/api/export/users?page=44"
+    ]
+  }
+]
